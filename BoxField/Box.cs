@@ -20,5 +20,38 @@ namespace BoxField
             speed = _speed;
             brushColour = _brushColor;
         }
+
+        public void Move()
+        {
+            y += speed;
+        }
+
+        public void Move(string direction)
+        {
+            if (direction == "left")
+            {
+                x -= speed;
+            }
+            else if (direction == "right")
+            {
+                x += speed;
+            }
+        }
+
+        public bool Collision(Box b)
+        {
+            Rectangle thisRec = new Rectangle(x, y, size, size);
+
+            Rectangle boxRec = new Rectangle(b.x, b.y, b.size, b.size);
+
+            if (thisRec.IntersectsWith(boxRec))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
